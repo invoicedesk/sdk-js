@@ -21,8 +21,28 @@ export type UpdateClientData = {
    */
   contactInfo?: Array<string>;
   /**
-   * Arbitrary information about the client.
+   * Secondary address line of the client
    */
-  metadata?: string;
+  addressLine2?: string;
+  /**
+   * City of the client
+   */
+  city?: string;
+  /**
+   * State of the client
+   */
+  state?: string;
+  /**
+   * Country of the client
+   */
+  country?: string;
+  /**
+   * ZIP/Postal code of the client
+   */
+  zipCode?: string;
+  /**
+   * Tax registration number of the client
+   */
+  taxRegistrationNumber?: string;
 };
 

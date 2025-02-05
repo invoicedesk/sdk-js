@@ -36,6 +36,10 @@ export type Company = {
    */
   address: string;
   /**
+   * Additional address information
+   */
+  addressLine2: string;
+  /**
    * City in which the company exists
    */
   city: string;
@@ -47,6 +51,14 @@ export type Company = {
    * Country in which the company exists
    */
   country: string;
+  /**
+   * Industry the company operates in
+   */
+  industry: string;
+  /**
+   * Default currency code for the company
+   */
+  defaultCurrencyCode: string;
   /**
    * Contact details of the company
    */

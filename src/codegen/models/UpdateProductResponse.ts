@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
 import type { Product } from './Product';
 
 export type UpdateProductResponse = {
@@ -18,6 +17,6 @@ export type UpdateProductResponse = {
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

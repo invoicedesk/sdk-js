@@ -4,11 +4,12 @@
 /* eslint-disable */
 import type { CreateCompanyData } from '../models/CreateCompanyData';
 import type { CreateCompanyResponse } from '../models/CreateCompanyResponse';
+import type { GetCompanyQueryParams } from '../models/GetCompanyQueryParams';
 import type { GetCompanyResponse } from '../models/GetCompanyResponse';
 import type { ListCompaniesResponse } from '../models/ListCompaniesResponse';
 import type { SuccessResponse } from '../models/SuccessResponse';
-import type { UpdateCompanyPayload } from '../models/UpdateCompanyPayload';
-import type { UpdateTaxRegistrationResponse } from '../models/UpdateTaxRegistrationResponse';
+import type { UpdateCompanyData } from '../models/UpdateCompanyData';
+import type { UpdateCompanyResponse } from '../models/UpdateCompanyResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -23,20 +24,10 @@ export class CompanyAPI {
    * @returns ListCompaniesResponse
    * @throws ApiError
    */
-  public listCompanies({
-    accountId,
-  }: {
-    /**
-     * Account ID for which to list companies
-     */
-    accountId: string,
-  }): CancelablePromise<ListCompaniesResponse> {
+  public listCompanies(): CancelablePromise<ListCompaniesResponse> {
     return this.httpRequest.request({
       method: 'GET',
-      url: '/accounts/{accountId}/companies',
-      path: {
-        'accountId': accountId,
-      },
+      url: '/companies',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,
@@ -51,23 +42,15 @@ export class CompanyAPI {
    * @throws ApiError
    */
   public createCompany({
-    accountId,
-    requestBody,
+    formData,
   }: {
-    /**
-     * Account ID for which to create a company
-     */
-    accountId: string,
-    requestBody: CreateCompanyData,
+    formData: CreateCompanyData,
   }): CancelablePromise<CreateCompanyResponse> {
     return this.httpRequest.request({
       method: 'POST',
-      url: '/accounts/{accountId}/companies',
-      path: {
-        'accountId': accountId,
-      },
-      body: requestBody,
-      mediaType: 'application/json',
+      url: '/companies',
+      formData: formData,
+      mediaType: 'multipart/form-data',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,
@@ -76,34 +59,29 @@ export class CompanyAPI {
   }
 
   /**
-   * Update tax registration of the company
-   * @returns UpdateTaxRegistrationResponse
+   * Update Company
+   * Update an existing company details
+   * @returns UpdateCompanyResponse
    * @throws ApiError
    */
-  public updateTaxRegistration({
-    accountId,
+  public updateCompany({
     companyId,
-    requestBody,
+    formData,
   }: {
     /**
-     * Account ID for which to create a company
-     */
-    accountId: string,
-    /**
-     * Company ID for for which the tax registrations has to be added
+     * ID of the company to update
      */
     companyId: string,
-    requestBody: UpdateCompanyPayload,
-  }): CancelablePromise<UpdateTaxRegistrationResponse> {
+    formData: UpdateCompanyData,
+  }): CancelablePromise<UpdateCompanyResponse> {
     return this.httpRequest.request({
       method: 'PATCH',
-      url: '/accounts/{accountId}/companies/{companyId}/tax-registration',
+      url: '/companies/{companyId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
       },
-      body: requestBody,
-      mediaType: 'application/json',
+      formData: formData,
+      mediaType: 'multipart/form-data',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,
@@ -117,24 +95,26 @@ export class CompanyAPI {
    * @throws ApiError
    */
   public getCompany({
-    accountId,
     companyId,
+    include,
   }: {
-    /**
-     * ID of the account in which the company belongs
-     */
-    accountId: string,
     /**
      * ID of the company to fetch
      */
     companyId: string,
+    /**
+     * Comma delimited string to include related company data
+     */
+    include?: GetCompanyQueryParams,
   }): CancelablePromise<GetCompanyResponse> {
     return this.httpRequest.request({
       method: 'GET',
-      url: '/accounts/{accountId}/companies/{companyId}',
+      url: '/companies/{companyId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
+      },
+      query: {
+        'include': include,
       },
       errors: {
         403: `Unauthorized`,
@@ -150,13 +130,8 @@ export class CompanyAPI {
    * @throws ApiError
    */
   public deleteCompany({
-    accountId,
     companyId,
   }: {
-    /**
-     * ID of the account in which the company belongs
-     */
-    accountId: string,
     /**
      * ID of the company
      */
@@ -164,45 +139,8 @@ export class CompanyAPI {
   }): CancelablePromise<SuccessResponse> {
     return this.httpRequest.request({
       method: 'DELETE',
-      url: '/accounts/{accountId}/companies/{companyId}',
+      url: '/companies/{companyId}',
       path: {
-        'accountId': accountId,
-        'companyId': companyId,
-      },
-      errors: {
-        403: `Unauthorized`,
-        404: `Resource not found`,
-      },
-    });
-  }
-
-  /**
-   * Update comany logo
-   *
-   * Upload image of your company's logo. This will be shown on invoices.
-   * Only image/jpeg,image/png are supported with a max file size of 2MB
-   *
-   * @returns SuccessResponse
-   * @throws ApiError
-   */
-  public updateLogo({
-    accountId,
-    companyId,
-  }: {
-    /**
-     * ID of the account in which the company belongs
-     */
-    accountId: string,
-    /**
-     * ID of the company
-     */
-    companyId: string,
-  }): CancelablePromise<SuccessResponse> {
-    return this.httpRequest.request({
-      method: 'PATCH',
-      url: '/accounts/{accountId}/companies/{companyId}/logo',
-      path: {
-        'accountId': accountId,
         'companyId': companyId,
       },
       errors: {

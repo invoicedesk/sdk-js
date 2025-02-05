@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
 import type { Client } from './Client';
 
 export type GetClientResponse = {
@@ -18,6 +17,6 @@ export type GetClientResponse = {
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

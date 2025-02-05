@@ -3,8 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
-
 export type SuccessResponse = {
   /**
    * Indicates whether the operation was successful or not
@@ -17,6 +15,6 @@ export type SuccessResponse = {
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

@@ -3,21 +3,20 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
-import type { TaxRegistration } from './TaxRegistration';
+import type { InvoiceSettings } from './InvoiceSettings';
 
-export type UpdateTaxRegistrationResponse = {
+export type InvoiceSettingsResponse = {
   /**
    * Indicates whether the operation was successful or not
    */
   success: boolean;
   /**
-   * Updated tax registrations
+   * The invoice settings
    */
-  data: Array<TaxRegistration>;
+  data: InvoiceSettings;
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

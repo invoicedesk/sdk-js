@@ -23,10 +23,6 @@ export type CreateInvoicePayload = {
    */
   prefix?: string;
   /**
-   * Any metadata attached to the invoice. Metadata is searchable
-   */
-  metadata?: Record<string, any>;
-  /**
    * The line items of the invoice
    */
   lineItems?: Array<LineItem>;

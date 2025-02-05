@@ -21,10 +21,9 @@ export class InvoiceDesk {
 
   constructor({
     host = 'https://api.invoicedesk.app',
-    version = 'v1',
   }: Config) {
     this.client = new InvoiceDeskClient({
-      BASE: `${host}/${version}`,
+      BASE: `${host}`,
     }, HttpClient);
   }
 
@@ -44,8 +43,12 @@ export class InvoiceDesk {
     return this.client.invoice;
   }
 
-  get auth() {
-    return this.client.authentication;
+  get profile() {
+    return this.client.userProfile;
+  }
+
+  get projects() {
+    return this.client.project;
   }
 
   /**

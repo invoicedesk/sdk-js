@@ -1,0 +1,38 @@
+/* generated using openapi-typescript-codegen -- do no edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export type UpdateProjectPayload = {
+  /**
+   * Name of the project
+   */
+  name?: string;
+  /**
+   * Description of the project
+   */
+  description?: string;
+  /**
+   * Client ID for the project
+   */
+  clientId?: string;
+  /**
+   * Status of the project
+   */
+  status?: UpdateProjectPayload.status;
+};
+
+export namespace UpdateProjectPayload {
+
+  /**
+   * Status of the project
+   */
+  export enum status {
+    PENDING = 'pending',
+    IN_PROGRESS = 'in_progress',
+    COMPLETED = 'completed',
+  }
+
+
+}
+

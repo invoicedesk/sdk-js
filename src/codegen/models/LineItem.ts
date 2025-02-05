@@ -30,9 +30,5 @@ export type LineItem = {
    * the array of line items
    */
   sortOrder?: number;
-  /**
-   * Any metadata attached to this line item.
-   */
-  metadata?: Record<string, any>;
 };
 

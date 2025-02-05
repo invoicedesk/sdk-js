@@ -24,24 +24,32 @@ export class ProductAPI {
    * @throws ApiError
    */
   public listProducts({
-    accountId,
     companyId,
+    page = 1,
+    limit = 20,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to list products
      */
     companyId: string,
+    /**
+     * Page being requested
+     */
+    page?: number,
+    /**
+     * Items to limit per page
+     */
+    limit?: number,
   }): CancelablePromise<ListProductsResponse> {
     return this.httpRequest.request({
       method: 'GET',
-      url: '/accounts/{accountId}/companies/{companyId}/products',
+      url: '/companies/{companyId}/products',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
+      },
+      query: {
+        'page': page,
+        'limit': limit,
       },
       errors: {
         403: `Unauthorized`,
@@ -57,14 +65,9 @@ export class ProductAPI {
    * @throws ApiError
    */
   public createProduct({
-    accountId,
     companyId,
     requestBody,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to create a product
      */
@@ -73,9 +76,8 @@ export class ProductAPI {
   }): CancelablePromise<CreateProductResponse> {
     return this.httpRequest.request({
       method: 'POST',
-      url: '/accounts/{accountId}/companies/{companyId}/products',
+      url: '/companies/{companyId}/products',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
       },
       body: requestBody,
@@ -94,15 +96,10 @@ export class ProductAPI {
    * @throws ApiError
    */
   public updateProduct({
-    accountId,
     companyId,
     productId,
     requestBody,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to create a product
      */
@@ -115,9 +112,8 @@ export class ProductAPI {
   }): CancelablePromise<UpdateProductResponse> {
     return this.httpRequest.request({
       method: 'PUT',
-      url: '/accounts/{accountId}/companies/{companyId}/products/{productId}',
+      url: '/companies/{companyId}/products/{productId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
         'productId': productId,
       },
@@ -137,15 +133,10 @@ export class ProductAPI {
    * @throws ApiError
    */
   public deleteProduct({
-    accountId,
     companyId,
     productId,
     requestBody,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to create a product
      */
@@ -158,9 +149,8 @@ export class ProductAPI {
   }): CancelablePromise<DeleteProductResponse> {
     return this.httpRequest.request({
       method: 'DELETE',
-      url: '/accounts/{accountId}/companies/{companyId}/products/{productId}',
+      url: '/companies/{companyId}/products/{productId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
         'productId': productId,
       },

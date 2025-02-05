@@ -3,10 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdateCompanyPayload = {
-  /**
-   * $property is required
-   */
-  taxRegistrations: Array<string>;
+export type GetCompanyQueryParams = {
 };
 

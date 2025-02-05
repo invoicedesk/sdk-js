@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
 import type { Invoice } from './Invoice';
 
 export type CreateInvoiceResponse = {
@@ -18,6 +17,6 @@ export type CreateInvoiceResponse = {
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

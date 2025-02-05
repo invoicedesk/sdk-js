@@ -3,10 +3,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Auth = {
+import type { Invoice } from './Invoice';
+
+export type GetInvoiceResponse = {
   /**
-   * JWT Token.
+   * The fetched invoice
    */
-  token: string;
+  data: Invoice;
 };
 

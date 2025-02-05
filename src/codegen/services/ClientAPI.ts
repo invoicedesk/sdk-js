@@ -24,13 +24,8 @@ export class ClientAPI {
    * @throws ApiError
    */
   public listClients({
-    accountId,
     companyId,
   }: {
-    /**
-     * Account ID for which to list companies
-     */
-    accountId: string,
     /**
      * Company ID for which to list clients
      */
@@ -38,9 +33,8 @@ export class ClientAPI {
   }): CancelablePromise<ListClientsResponse> {
     return this.httpRequest.request({
       method: 'GET',
-      url: '/accounts/{accountId}/companies/{companyId}/clients',
+      url: '/companies/{companyId}/clients',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
       },
       errors: {
@@ -57,14 +51,9 @@ export class ClientAPI {
    * @throws ApiError
    */
   public createClient({
-    accountId,
     companyId,
     requestBody,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to add a client
      */
@@ -73,9 +62,8 @@ export class ClientAPI {
   }): CancelablePromise<CreateClientResponse> {
     return this.httpRequest.request({
       method: 'POST',
-      url: '/accounts/{accountId}/companies/{companyId}/clients',
+      url: '/companies/{companyId}/clients',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
       },
       body: requestBody,
@@ -94,15 +82,10 @@ export class ClientAPI {
    * @throws ApiError
    */
   public updateClient({
-    accountId,
     companyId,
     clientId,
     requestBody,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to update a client
      */
@@ -115,9 +98,8 @@ export class ClientAPI {
   }): CancelablePromise<UpdateClientResponse> {
     return this.httpRequest.request({
       method: 'PATCH',
-      url: '/accounts/{accountId}/companies/{companyId}/clients/{clientId}',
+      url: '/companies/{companyId}/clients/{clientId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
         'clientId': clientId,
       },
@@ -137,14 +119,9 @@ export class ClientAPI {
    * @throws ApiError
    */
   public deleteClient({
-    accountId,
     companyId,
     clientId,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     /**
      * Company ID for which to update a client
      */
@@ -156,9 +133,8 @@ export class ClientAPI {
   }): CancelablePromise<DeleteClientResponse> {
     return this.httpRequest.request({
       method: 'DELETE',
-      url: '/accounts/{accountId}/companies/{companyId}/clients/{clientId}',
+      url: '/companies/{companyId}/clients/{clientId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
         'clientId': clientId,
       },
@@ -178,7 +154,6 @@ export class ClientAPI {
   public getClient({
     include,
     limit,
-    accountId,
     companyId,
     clientId,
   }: {
@@ -191,10 +166,6 @@ export class ClientAPI {
      */
     limit: number,
     /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
-    /**
      * Company ID for which to update a client
      */
     companyId: string,
@@ -205,9 +176,8 @@ export class ClientAPI {
   }): CancelablePromise<GetClientResponse> {
     return this.httpRequest.request({
       method: 'GET',
-      url: '/accounts/{accountId}/companies/{companyId}/clients/{clientId}',
+      url: '/companies/{companyId}/clients/{clientId}',
       path: {
-        'accountId': accountId,
         'companyId': companyId,
         'clientId': clientId,
       },

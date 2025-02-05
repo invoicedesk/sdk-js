@@ -25,8 +25,25 @@ export type UpdateProductPayload = {
    */
   units?: string;
   /**
-   * Metadata of the product
+   * Type of the product (goods/services)
    */
-  metadata?: string;
+  type?: UpdateProductPayload.type;
+  /**
+   * SAC code for services
+   */
+  sac?: string;
 };
+
+export namespace UpdateProductPayload {
+
+  /**
+   * Type of the product (goods/services)
+   */
+  export enum type {
+    GOODS = 'goods',
+    SERVICE = 'service',
+  }
+
+
+}
 

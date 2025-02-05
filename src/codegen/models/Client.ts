@@ -4,6 +4,7 @@
 /* eslint-disable */
 
 import type { Company } from './Company';
+import type { ContactInfo } from './ContactInfo';
 
 export type Client = {
   /**
@@ -27,13 +28,9 @@ export type Client = {
    */
   address: string;
   /**
-   * Client contact information
+   * Client contact information (array of phone numbers and email addresses)
    */
-  contactInfo: Array<string>;
-  /**
-   * Any metadata attached with the client
-   */
-  metadata: string;
+  contactInfo: Array<ContactInfo>;
   /**
    * Date this client was created in our system
    */

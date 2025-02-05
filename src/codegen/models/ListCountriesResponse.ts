@@ -3,21 +3,21 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Account } from './Account';
-import type { APIError } from './APIError';
-
-export type SignUpResponse = {
+export type ListCountriesResponse = {
   /**
    * Indicates whether the operation was successful or not
    */
   success: boolean;
   /**
-   * The newly created api token
+   * List of available countries
    */
-  data: Account;
+  data: Array<{
+    id?: number;
+    name?: string;
+  }>;
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

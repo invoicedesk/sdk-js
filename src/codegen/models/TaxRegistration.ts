@@ -5,12 +5,12 @@
 
 export type TaxRegistration = {
   /**
-   * Name of the tax
+   * Name of the registration
    */
   name: string;
   /**
-   * Identity of the tax
+   * The actual tax registration number
    */
-  identity: string;
+  value: string;
 };
 

@@ -4,5 +4,17 @@
 /* eslint-disable */
 
 export type Account = {
+  /**
+   * ID of the account
+   */
+  id: string;
+  /**
+   * Name of the account
+   */
+  name: string;
+  /**
+   * Date when the account was created
+   */
+  createdAt: string;
 };
 

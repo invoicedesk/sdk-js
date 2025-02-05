@@ -41,10 +41,6 @@ export type InvoiceLineItem = {
    */
   sortOrder: number;
   /**
-   * Any associated metadata when the invoice was created
-   */
-  metadata: Record<string, any>;
-  /**
    * Timestamp of line item creation
    */
   createdAt: string;

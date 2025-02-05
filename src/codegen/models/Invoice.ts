@@ -43,10 +43,6 @@ export type Invoice = {
    */
   currency: string;
   /**
-   * Any metadata attached with this invoice
-   */
-  metadata: Record<string, any>;
-  /**
    * Timestamp of invoice creation
    */
   createdAt: string;

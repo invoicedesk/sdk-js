@@ -3,11 +3,18 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type SignInPayload = {
+export type ContactInfo = {
   /**
-   * Registered email address
+   * Contact person's name
+   */
+  name: string;
+  /**
+   * Contact email
    */
   email: string;
-  password: string;
+  /**
+   * Contact phone number
+   */
+  phone: string;
 };
 

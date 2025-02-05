@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
+import type { PaginationMeta } from './PaginationMeta';
 import type { Product } from './Product';
 
 export type ListProductsResponse = {
@@ -18,6 +18,7 @@ export type ListProductsResponse = {
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
+  meta: PaginationMeta;
 };
 

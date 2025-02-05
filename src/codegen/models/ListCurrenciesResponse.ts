@@ -3,21 +3,23 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { APIError } from './APIError';
-import type { Auth } from './Auth';
-
-export type SignInResponse = {
+export type ListCurrenciesResponse = {
   /**
    * Indicates whether the operation was successful or not
    */
   success: boolean;
   /**
-   * For non-error scenarios, holds the API response data
+   * List of available currencies
    */
-  data: Auth;
+  data: Array<{
+    id?: number;
+    name?: string;
+    symbol?: string;
+    code?: string;
+  }>;
   /**
    * If the operation was not successful, holds the deatils of errors
    */
-  errors: Array<APIError>;
+  errors: Array<string>;
 };
 

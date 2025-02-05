@@ -35,10 +35,6 @@ export type Product = {
    */
   units: string;
   /**
-   * Arbitrary metadata attached to this product
-   */
-  metadata: string;
-  /**
    * Details of the company this product belongs to
    */
   company: Company;

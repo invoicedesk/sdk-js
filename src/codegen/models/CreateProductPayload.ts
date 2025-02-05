@@ -25,8 +25,25 @@ export type CreateProductPayload = {
    */
   units?: string;
   /**
-   * Metadata allows you to attach arbitrary bits of information to the product. This metadata is searchable. For example: {tags: ["clothing", "male"]}
+   * Type of the product (goods/services)
    */
-  metadata?: string;
+  type: CreateProductPayload.type;
+  /**
+   * SAC code for services
+   */
+  sac?: string;
 };
+
+export namespace CreateProductPayload {
+
+  /**
+   * Type of the product (goods/services)
+   */
+  export enum type {
+    GOODS = 'goods',
+    SERVICE = 'service',
+  }
+
+
+}
 

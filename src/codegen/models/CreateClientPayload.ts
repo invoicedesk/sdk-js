@@ -3,6 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ContactInfo } from './ContactInfo';
+
 export type CreateClientPayload = {
   /**
    * Name of the client is required
@@ -17,12 +19,32 @@ export type CreateClientPayload = {
    */
   address?: string;
   /**
-   * contact info of the client
+   * Contact info of the client (array of phone numbers and email addresses)
    */
-  contactInfo?: Array<string>;
+  contactInfo?: Array<ContactInfo>;
   /**
-   * Meta data of the client
+   * Secondary address line of the client
    */
-  metadata?: string;
+  addressLine2?: string;
+  /**
+   * City of the client
+   */
+  city: string;
+  /**
+   * State of the client
+   */
+  state: string;
+  /**
+   * Country of the client
+   */
+  country: string;
+  /**
+   * ZIP/Postal code of the client
+   */
+  zipCode: string;
+  /**
+   * Tax registration number of the client
+   */
+  taxRegistrationNumber?: string;
 };
 
