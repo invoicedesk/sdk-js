@@ -12,9 +12,5 @@ export type CreateTokenPayload = {
    * Date when this token expires. This token will be automatically revoked beyond this date
    */
   expiresAt?: string;
-  /**
-   * Authorization permissions for the token
-   */
-  abilities?: string;
 };
 

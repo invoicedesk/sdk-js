@@ -14,6 +14,13 @@ export type Config = {
    * @default v1
    */
   version?: string;
+
+  /**
+   * API key for accessing Invoice Desk's APIs.
+   *
+   * @type {string}
+   */
+  apiKey: string;
 };
 
 export class InvoiceDesk {
@@ -21,10 +28,12 @@ export class InvoiceDesk {
 
   constructor({
     host = 'https://api.invoicedesk.app',
+    apiKey,
   }: Config) {
     this.client = new InvoiceDeskClient({
       BASE: `${host}`,
     }, HttpClient);
+    OpenAPI.TOKEN = apiKey;
   }
 
   get clients() {
@@ -49,6 +58,18 @@ export class InvoiceDesk {
 
   get projects() {
     return this.client.project;
+  }
+
+  get account() {
+    return this.client.account;
+  }
+
+  get team() {
+    return this.client.team;
+  }
+
+  get product() {
+    return this.client.product;
   }
 
   /**

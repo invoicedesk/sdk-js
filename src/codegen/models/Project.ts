@@ -5,6 +5,8 @@
 
 import type { Client } from './Client';
 import type { Company } from './Company';
+import type { ProjectTeamMember } from './ProjectTeamMember';
+import type { Tag } from './Tag';
 
 export type Project = {
   /**
@@ -51,6 +53,30 @@ export type Project = {
    * The current status of the project
    */
   status: Project.status;
+  /**
+   * The timesheets for this project
+   */
+  timesheets: Array<string>;
+  /**
+   * Start date of the project
+   */
+  startDate?: string;
+  /**
+   * Due date of the project
+   */
+  dueDate?: string;
+  /**
+   * Hourly rate for the project
+   */
+  rate?: number;
+  /**
+   * Team members that are a part of this project
+   */
+  teamMembers: Array<ProjectTeamMember>;
+  /**
+   * Tags associated with this project
+   */
+  tags: Array<Tag>;
 };
 
 export namespace Project {

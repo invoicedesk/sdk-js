@@ -5,7 +5,10 @@
 import type { CreateInvoicePayload } from '../models/CreateInvoicePayload';
 import type { CreateInvoiceResponse } from '../models/CreateInvoiceResponse';
 import type { GetInvoiceResponse } from '../models/GetInvoiceResponse';
+import type { ImportInvoicesPayload } from '../models/ImportInvoicesPayload';
+import type { ImportInvoicesResponse } from '../models/ImportInvoicesResponse';
 import type { ListInvoiceResponse } from '../models/ListInvoiceResponse';
+import type { SendInvoiceRequestBody } from '../models/SendInvoiceRequestBody';
 import type { SuccessResponse } from '../models/SuccessResponse';
 import type { UpdateInvoiceRequestBody } from '../models/UpdateInvoiceRequestBody';
 
@@ -24,16 +27,31 @@ export class InvoiceAPI {
    */
   public listInvoices({
     companyId,
+    page = 1,
+    limit = 20,
     prefixes,
+    include,
   }: {
     /**
      * Company ID for which to list invoices
      */
     companyId: string,
     /**
+     * Page being requested
+     */
+    page?: number,
+    /**
+     * Items to limit per page
+     */
+    limit?: number,
+    /**
      * Comma delimited query string that filters invoices by prefix.
      */
     prefixes?: string,
+    /**
+     * Comma separated list of related data to include in the response
+     */
+    include?: 'items' | 'client' | 'company',
   }): CancelablePromise<ListInvoiceResponse> {
     return this.httpRequest.request({
       method: 'GET',
@@ -42,7 +60,10 @@ export class InvoiceAPI {
         'companyId': companyId,
       },
       query: {
+        'page': page,
+        'limit': limit,
         'prefixes': prefixes,
+        'include': include,
       },
       errors: {
         403: `Unauthorized`,
@@ -186,6 +207,37 @@ export class InvoiceAPI {
   }
 
   /**
+   * Import invoices
+   * Import multiple invoices with custom invoice numbers
+   * @returns ImportInvoicesResponse
+   * @throws ApiError
+   */
+  public importInvoices({
+    companyId,
+    requestBody,
+  }: {
+    /**
+     * Company ID for which to import invoices
+     */
+    companyId: string,
+    requestBody: ImportInvoicesPayload,
+  }): CancelablePromise<ImportInvoicesResponse> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/companies/{companyId}/invoices/import',
+      path: {
+        'companyId': companyId,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
    * Export invoice
    * Export an invoice in PDF or CSV format
    * @returns SuccessResponse
@@ -219,6 +271,43 @@ export class InvoiceAPI {
       query: {
         'format': format,
       },
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Send invoice
+   * Send an invoice to the client via email
+   * @returns SuccessResponse
+   * @throws ApiError
+   */
+  public sendInvoice({
+    companyId,
+    invoiceId,
+    requestBody,
+  }: {
+    /**
+     * Company ID the invoice belongs to
+     */
+    companyId: string,
+    /**
+     * ID of the invoice to send
+     */
+    invoiceId: string,
+    requestBody: SendInvoiceRequestBody,
+  }): CancelablePromise<SuccessResponse> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/companies/{companyId}/invoices/{invoiceId}/send',
+      path: {
+        'companyId': companyId,
+        'invoiceId': invoiceId,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,

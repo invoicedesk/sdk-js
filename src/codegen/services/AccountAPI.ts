@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CreateAccountRequest } from '../models/CreateAccountRequest';
+import type { CreateAccountResponse } from '../models/CreateAccountResponse';
 import type { CreateApiTokenResponse } from '../models/CreateApiTokenResponse';
 import type { CreateTokenPayload } from '../models/CreateTokenPayload';
 import type { GetAccountDetailsResponse } from '../models/GetAccountDetailsResponse';
@@ -56,19 +57,25 @@ export class AccountAPI {
   }
 
   /**
-   * @returns any
+   * Create a new account
+   * Creates a brand new account
+   * @returns CreateAccountResponse
    * @throws ApiError
    */
-  public accountControllerCreateAccount({
+  public createAccount({
     requestBody,
   }: {
     requestBody: CreateAccountRequest,
-  }): CancelablePromise<any> {
+  }): CancelablePromise<CreateAccountResponse> {
     return this.httpRequest.request({
       method: 'POST',
       url: '/accounts',
       body: requestBody,
       mediaType: 'application/json',
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
     });
   }
 
@@ -79,21 +86,13 @@ export class AccountAPI {
    * @throws ApiError
    */
   public createApiToken({
-    accountId,
     requestBody,
   }: {
-    /**
-     * Account ID to which the company belongs
-     */
-    accountId: string,
     requestBody: CreateTokenPayload,
   }): CancelablePromise<CreateApiTokenResponse> {
     return this.httpRequest.request({
-      method: 'PUT',
-      url: '/accounts/{accountId}/api-token',
-      path: {
-        'accountId': accountId,
-      },
+      method: 'POST',
+      url: '/accounts/api-token',
       body: requestBody,
       mediaType: 'application/json',
       errors: {

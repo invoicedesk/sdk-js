@@ -5,30 +5,50 @@
 
 export type LineItem = {
   /**
-   * ID of the product or service being invoiced
+   * ID of the invoiceable item
    */
-  id?: string;
+  id: string;
   /**
-   * Title of the item
+   * The type of entity being invoiced
    */
-  title: string;
+  type: LineItem.type;
   /**
-   * Short item description
+   * Description of the invoiceable item
    */
   description?: string;
   /**
-   * Price of the line item. Must be indicated in lowest denomination of invoice currency.
+   * Price of the invoiceable item
    */
   price: number;
   /**
-   * Quantity of the item being invoiced.
+   * Quantity of the invoiceable item
    */
   quantity: number;
   /**
-   * Order in which the item will appear in the rendered invoice.
-   * If not specified, the sort order will be inferred based on its position in
-   * the array of line items
+   * Unit of measurement
+   */
+  unit?: string;
+  /**
+   * Sort order of the item in the invoice
    */
   sortOrder?: number;
+  /**
+   * Tax ID for this line item
+   */
+  taxId?: string;
 };
+
+export namespace LineItem {
+
+  /**
+   * The type of entity being invoiced
+   */
+  export enum type {
+    GOODS = 'GOODS',
+    SERVICES = 'SERVICES',
+    TIMESHEET = 'TIMESHEET',
+  }
+
+
+}
 

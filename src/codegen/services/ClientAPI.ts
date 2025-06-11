@@ -25,17 +25,37 @@ export class ClientAPI {
    */
   public listClients({
     companyId,
+    page = 1,
+    limit = 20,
+    search,
   }: {
     /**
      * Company ID for which to list clients
      */
     companyId: string,
+    /**
+     * Page being requested
+     */
+    page?: number,
+    /**
+     * Items to limit per page
+     */
+    limit?: number,
+    /**
+     * Search for clients by name
+     */
+    search?: string,
   }): CancelablePromise<ListClientsResponse> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/companies/{companyId}/clients',
       path: {
         'companyId': companyId,
+      },
+      query: {
+        'page': page,
+        'limit': limit,
+        'search': search,
       },
       errors: {
         403: `Unauthorized`,

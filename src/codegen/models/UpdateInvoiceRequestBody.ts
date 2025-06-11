@@ -3,11 +3,17 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { LineItem } from './LineItem';
+
 export type UpdateInvoiceRequestBody = {
   /**
    * Date of the invoice
    */
   date?: string;
+  /**
+   * Due date of the invoice
+   */
+  dueDate?: string;
   /**
    * Status of the invoice
    */
@@ -16,6 +22,26 @@ export type UpdateInvoiceRequestBody = {
    * Currency of the invoice
    */
   currency?: string;
+  /**
+   * ID of the client
+   */
+  clientId?: string;
+  /**
+   * Line items in the invoice
+   */
+  lineItems?: Array<LineItem>;
+  /**
+   * Notes for the invoice
+   */
+  notes?: string;
+  /**
+   * Discount value for the invoice
+   */
+  discountValue?: number;
+  /**
+   * Type of discount
+   */
+  discountType?: UpdateInvoiceRequestBody.discountType;
 };
 
 export namespace UpdateInvoiceRequestBody {
@@ -27,8 +53,14 @@ export namespace UpdateInvoiceRequestBody {
     DRAFT = 'draft',
     SENT = 'sent',
     PAID = 'paid',
-    OUTSTANDING = 'outstanding',
-    OVERDUE = 'overdue',
+  }
+
+  /**
+   * Type of discount
+   */
+  export enum discountType {
+    PERCENTAGE = 'percentage',
+    FLAT = 'flat',
   }
 
 

@@ -5,6 +5,8 @@
 
 import type { CompanyContactInfo } from './CompanyContactInfo';
 import type { Invoice } from './Invoice';
+import type { InvoiceSettings } from './InvoiceSettings';
+import type { Project } from './Project';
 
 export type Company = {
   /**
@@ -63,5 +65,13 @@ export type Company = {
    * Contact details of the company
    */
   contactInfo: Array<CompanyContactInfo>;
+  /**
+   * List of projects being managed by the company
+   */
+  projects: Array<Project>;
+  /**
+   * Invoice settings for the company
+   */
+  invoiceSettings: InvoiceSettings;
 };
 

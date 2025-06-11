@@ -27,6 +27,7 @@ export class ProductAPI {
     companyId,
     page = 1,
     limit = 20,
+    search,
   }: {
     /**
      * Company ID for which to list products
@@ -40,6 +41,7 @@ export class ProductAPI {
      * Items to limit per page
      */
     limit?: number,
+    search?: string,
   }): CancelablePromise<ListProductsResponse> {
     return this.httpRequest.request({
       method: 'GET',
@@ -50,6 +52,7 @@ export class ProductAPI {
       query: {
         'page': page,
         'limit': limit,
+        'search': search,
       },
       errors: {
         403: `Unauthorized`,

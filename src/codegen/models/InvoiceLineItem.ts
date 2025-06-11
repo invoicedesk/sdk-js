@@ -19,11 +19,7 @@ export type InvoiceLineItem = {
   /**
    * Type of line item.
    */
-  itemType: InvoiceLineItem.itemType;
-  /**
-   * Title of the line item
-   */
-  title: string;
+  type: InvoiceLineItem.type;
   /**
    * Short description of the line item
    */
@@ -37,6 +33,10 @@ export type InvoiceLineItem = {
    */
   quantity: number;
   /**
+   * Unit of measure
+   */
+  unit: string;
+  /**
    * Order in which the item appears in the rendered invoice
    */
   sortOrder: number;
@@ -44,6 +44,10 @@ export type InvoiceLineItem = {
    * Timestamp of line item creation
    */
   createdAt: string;
+  /**
+   * ID of the associated tax. If not set, no tax is applied.
+   */
+  taxId: string;
 };
 
 export namespace InvoiceLineItem {
@@ -51,8 +55,10 @@ export namespace InvoiceLineItem {
   /**
    * Type of line item.
    */
-  export enum itemType {
-    PRODUCT = 'product',
+  export enum type {
+    GOODS = 'GOODS',
+    SERVICES = 'SERVICES',
+    TIMESHEET = 'TIMESHEET',
   }
 
 

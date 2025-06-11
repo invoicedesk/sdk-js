@@ -16,5 +16,17 @@ export type CreateProjectPayLoad = {
    * Client Id associated with the project
    */
   clientId: string;
+  /**
+   * Start date of the project
+   */
+  startDate?: string;
+  /**
+   * Due date of the project
+   */
+  dueDate?: string;
+  /**
+   * Hourly rate for the project
+   */
+  rate?: number;
 };
 

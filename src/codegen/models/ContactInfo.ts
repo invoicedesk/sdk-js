@@ -5,16 +5,16 @@
 
 export type ContactInfo = {
   /**
-   * Contact person's name
+   * Name of the contact
    */
   name: string;
   /**
-   * Contact email
+   * Phone number of the contact
    */
-  email: string;
+  phone?: string;
   /**
-   * Contact phone number
+   * Email address of the contact
    */
-  phone: string;
+  email?: string;
 };
 

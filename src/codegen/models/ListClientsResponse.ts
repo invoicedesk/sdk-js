@@ -4,6 +4,7 @@
 /* eslint-disable */
 
 import type { Client } from './Client';
+import type { PaginationMeta } from './PaginationMeta';
 
 export type ListClientsResponse = {
   /**
@@ -18,5 +19,6 @@ export type ListClientsResponse = {
    * If the operation was not successful, holds the deatils of errors
    */
   errors: Array<string>;
+  meta: PaginationMeta;
 };
 

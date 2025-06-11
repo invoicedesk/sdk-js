@@ -20,6 +20,18 @@ export type UpdateProjectPayload = {
    * Status of the project
    */
   status?: UpdateProjectPayload.status;
+  /**
+   * Start date of the project
+   */
+  startDate?: string;
+  /**
+   * Due date of the project
+   */
+  dueDate?: string;
+  /**
+   * Hourly rate for the project
+   */
+  rate?: number;
 };
 
 export namespace UpdateProjectPayload {

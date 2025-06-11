@@ -12,12 +12,17 @@ export class DashboardAPI {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
+   * Dashboard
+   * Get metrics that power the dashboard
    * @returns DashboardResponse
    * @throws ApiError
    */
-  public dashboardControllerGetDashboardMetrics({
+  public getDasboard({
     companyId,
   }: {
+    /**
+     * Company ID for which to get metrics
+     */
     companyId: string,
   }): CancelablePromise<DashboardResponse> {
     return this.httpRequest.request({

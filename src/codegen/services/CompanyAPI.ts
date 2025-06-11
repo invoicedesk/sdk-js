@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { CreateCompanyData } from '../models/CreateCompanyData';
 import type { CreateCompanyResponse } from '../models/CreateCompanyResponse';
+import type { GetCompanyPaymentsResponse } from '../models/GetCompanyPaymentsResponse';
 import type { GetCompanyQueryParams } from '../models/GetCompanyQueryParams';
 import type { GetCompanyResponse } from '../models/GetCompanyResponse';
 import type { ListCompaniesResponse } from '../models/ListCompaniesResponse';
@@ -124,7 +125,7 @@ export class CompanyAPI {
   }
 
   /**
-   * Delete a comany
+   * Delete a company
    * Deletes a company and all it's related data
    * @returns SuccessResponse
    * @throws ApiError
@@ -140,6 +141,33 @@ export class CompanyAPI {
     return this.httpRequest.request({
       method: 'DELETE',
       url: '/companies/{companyId}',
+      path: {
+        'companyId': companyId,
+      },
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Get all payments for a company
+   * Retrieves all payments recorded for a company with associated invoice details
+   * @returns GetCompanyPaymentsResponse
+   * @throws ApiError
+   */
+  public getCompanyPayments({
+    companyId,
+  }: {
+    /**
+     * Company ID to get payments for
+     */
+    companyId: string,
+  }): CancelablePromise<GetCompanyPaymentsResponse> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/companies/{companyId}/payments',
       path: {
         'companyId': companyId,
       },

@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { PaginationMeta } from './PaginationMeta';
 import type { Project } from './Project';
 
 export type ListProjectsResponse = {
@@ -18,5 +19,6 @@ export type ListProjectsResponse = {
    * If the operation was not successful, holds the deatils of errors
    */
   errors: Array<string>;
+  meta: PaginationMeta;
 };
 

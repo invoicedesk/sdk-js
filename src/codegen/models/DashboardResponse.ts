@@ -3,34 +3,20 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { InvoiceStatusCounts } from './InvoiceStatusCounts';
-import type { MonthlyInvoiceStats } from './MonthlyInvoiceStats';
-import type { MonthlyRevenue } from './MonthlyRevenue';
+import type { DashboardData } from './DashboardData';
 
 export type DashboardResponse = {
   /**
-   * Total revenue generated in the current month in the default currency
+   * Indicates whether the operation was successful or not
    */
-  currentMonthRevenue: number;
+  success: boolean;
   /**
-   * Total number of invoices that have been sent to clients in the current month
+   * For non-error scenarios, holds the API response data
    */
-  invoicesSentThisMonth: number;
+  data: DashboardData;
   /**
-   * Total outstanding amounts mapped by currency
+   * If the operation was not successful, holds the deatils of errors
    */
-  totalOutstanding: Record<string, any>;
-  /**
-   * Monthly revenue breakdown for the past 12 months, ordered chronologically
-   */
-  yearlyRevenueByMonth: Array<MonthlyRevenue>;
-  /**
-   * Monthly statistics showing the number of invoices raised and sent over the past 12 months
-   */
-  monthlyInvoiceStats: Array<MonthlyInvoiceStats>;
-  /**
-   * Current count of invoices grouped by their status (paid, outstanding, pending, overdue)
-   */
-  invoiceStatusCounts: InvoiceStatusCounts;
+  errors: Array<string>;
 };
 

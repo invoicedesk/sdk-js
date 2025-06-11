@@ -4,6 +4,7 @@
 /* eslint-disable */
 
 import type { Invoice } from './Invoice';
+import type { PaginationMeta } from './PaginationMeta';
 
 export type ListInvoiceResponse = {
   /**
@@ -18,5 +19,6 @@ export type ListInvoiceResponse = {
    * If the operation was not successful, holds the deatils of errors
    */
   errors: Array<string>;
+  meta: PaginationMeta;
 };
 

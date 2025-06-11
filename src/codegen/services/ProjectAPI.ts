@@ -25,6 +25,9 @@ export class ProjectAPI {
    */
   public listProjects({
     companyId,
+    page = 1,
+    limit = 20,
+    search,
     clientId,
   }: {
     /**
@@ -32,7 +35,16 @@ export class ProjectAPI {
      */
     companyId: string,
     /**
-     * Optional client ID to filter projects
+     * Page being requested
+     */
+    page?: number,
+    /**
+     * Items to limit per page
+     */
+    limit?: number,
+    search?: string,
+    /**
+     * Client ID to filter projects
      */
     clientId?: string,
   }): CancelablePromise<ListProjectsResponse> {
@@ -43,6 +55,9 @@ export class ProjectAPI {
         'companyId': companyId,
       },
       query: {
+        'page': page,
+        'limit': limit,
+        'search': search,
         'client_id': clientId,
       },
       errors: {

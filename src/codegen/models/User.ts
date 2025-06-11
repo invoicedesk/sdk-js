@@ -7,11 +7,11 @@ export type User = {
   /**
    * First name of the user
    */
-  firstName: string;
+  firstName?: string;
   /**
    * Last name of the user
    */
-  lastName: string;
+  lastName?: string;
   /**
    * Title of the user
    */
