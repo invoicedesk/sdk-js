@@ -11,7 +11,7 @@ export type CreateTimesheetPayLoad = {
   /**
    * Start date of the timesheet
    */
-  startTime: string;
+  startTime?: string;
   /**
    * End date of the timesheet
    */
@@ -28,6 +28,18 @@ export type CreateTimesheetPayLoad = {
    * The date this task is due by
    */
   dueDate?: string;
+  /**
+   * Name of the task
+   */
+  taskName: string;
+  /**
+   * Priority of the task
+   */
+  priority?: CreateTimesheetPayLoad.priority;
+  /**
+   * Array of tag IDs to associate with this timesheet
+   */
+  tagIds?: Array<string>;
 };
 
 export namespace CreateTimesheetPayLoad {
@@ -40,6 +52,16 @@ export namespace CreateTimesheetPayLoad {
     TODO = 'todo',
     IN_PROGRESS = 'in_progress',
     DONE = 'done',
+  }
+
+  /**
+   * Priority of the task
+   */
+  export enum priority {
+    LOW = 'low',
+    MEDIUM = 'medium',
+    HIGH = 'high',
+    URGENT = 'urgent',
   }
 
 

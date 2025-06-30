@@ -60,16 +60,16 @@ export class InvoiceDesk {
     return this.client.project;
   }
 
-  get account() {
+  get accounts() {
     return this.client.account;
   }
 
-  get team() {
+  get teams() {
     return this.client.team;
   }
 
-  get product() {
-    return this.client.product;
+  get tags() {
+    return this.client.tags;
   }
 
   /**

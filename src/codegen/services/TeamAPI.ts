@@ -3,7 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { APIResponse } from '../models/APIResponse';
+import type { CompleteInviteFlowBody } from '../models/CompleteInviteFlowBody';
+import type { CompleteInviteFlowResponse } from '../models/CompleteInviteFlowResponse';
 import type { DeleteTeamMemberResponse } from '../models/DeleteTeamMemberResponse';
+import type { ExchangeTokenForDetailsResponse } from '../models/ExchangeTokenForDetailsResponse';
 import type { InviteTeamMemberRequestBody } from '../models/InviteTeamMemberRequestBody';
 import type { ListTeamMembersResponse } from '../models/ListTeamMembersResponse';
 import type { ResendInviteRequestBody } from '../models/ResendInviteRequestBody';
@@ -11,8 +14,8 @@ import type { TeamInviteResponse } from '../models/TeamInviteResponse';
 import type { UpdateTeamMemberRequestBody } from '../models/UpdateTeamMemberRequestBody';
 import type { UpdateTeamMemberResponse } from '../models/UpdateTeamMemberResponse';
 
-import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 import type { CancelablePromise } from '../core/CancelablePromise';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class TeamAPI {
 
@@ -142,6 +145,55 @@ export class TeamAPI {
       url: '/team-invites/accept-invite',
       query: {
         'token': token,
+      },
+    });
+  }
+
+  /**
+   * Exchange token for email
+   * Exchange token for email
+   * @returns ExchangeTokenForDetailsResponse
+   * @throws ApiError
+   */
+  public exchangeTokenForEmail({
+    token,
+  }: {
+    /**
+     * Team invite token
+     */
+    token: string,
+  }): CancelablePromise<ExchangeTokenForDetailsResponse> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/team-invites/exchange',
+      query: {
+        'token': token,
+      },
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Complete Invite Flow
+   * Completes the invitation flow by validating the auth provider user ID, invite token and cementing the users's membership in the team
+   * @returns CompleteInviteFlowResponse
+   * @throws ApiError
+   */
+  public completeInviteFlow({
+    requestBody,
+  }: {
+    requestBody: CompleteInviteFlowBody,
+  }): CancelablePromise<CompleteInviteFlowResponse> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/team-invites/complete',
+      body: requestBody,
+      mediaType: 'application/json',
+      errors: {
+        404: `Resource not found`,
       },
     });
   }
