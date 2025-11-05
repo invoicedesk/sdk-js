@@ -15,11 +15,11 @@ export type InvoiceLineItem = {
   /**
    * ID of the associated product or service. If null, the product or service is not associated internally
    */
-  itemId: string;
+  invoiceableId: string;
   /**
    * Type of line item.
    */
-  type: InvoiceLineItem.type;
+  invoiceableType: InvoiceLineItem.invoiceableType;
   /**
    * Short description of the line item
    */
@@ -55,7 +55,7 @@ export namespace InvoiceLineItem {
   /**
    * Type of line item.
    */
-  export enum type {
+  export enum invoiceableType {
     GOODS = 'GOODS',
     SERVICES = 'SERVICES',
     TIMESHEET = 'TIMESHEET',

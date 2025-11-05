@@ -16,5 +16,9 @@ export type Account = {
    * Date when the account was created
    */
   createdAt: string;
+  /**
+   * Presigned URL for the account logo
+   */
+  logoURL?: string;
 };
 

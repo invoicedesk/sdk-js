@@ -58,20 +58,20 @@ export class AccountAPI {
 
   /**
    * Create a new account
-   * Creates a brand new account
+   * Creates a brand new account with optional logo upload
    * @returns CreateAccountResponse
    * @throws ApiError
    */
   public createAccount({
-    requestBody,
+    formData,
   }: {
-    requestBody: CreateAccountRequest,
+    formData: CreateAccountRequest,
   }): CancelablePromise<CreateAccountResponse> {
     return this.httpRequest.request({
       method: 'POST',
       url: '/accounts',
-      body: requestBody,
-      mediaType: 'application/json',
+      formData: formData,
+      mediaType: 'multipart/form-data',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,
@@ -95,6 +95,23 @@ export class AccountAPI {
       url: '/accounts/api-token',
       body: requestBody,
       mediaType: 'application/json',
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Update account logo
+   * Update or remove the account logo
+   * @returns GetAccountDetailsResponse
+   * @throws ApiError
+   */
+  public updateAccountLogo(): CancelablePromise<GetAccountDetailsResponse> {
+    return this.httpRequest.request({
+      method: 'PATCH',
+      url: '/accounts/logo',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,

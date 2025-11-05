@@ -5,6 +5,7 @@
 
 import type { Client } from './Client';
 import type { Company } from './Company';
+import type { ProjectTaskStatus } from './ProjectTaskStatus';
 import type { ProjectTeamMember } from './ProjectTeamMember';
 import type { Tag } from './Tag';
 
@@ -77,6 +78,10 @@ export type Project = {
    * Tags associated with this project
    */
   tags: Array<Tag>;
+  /**
+   * Custom task statuses defined for this project
+   */
+  statuses: Array<ProjectTaskStatus>;
 };
 
 export namespace Project {

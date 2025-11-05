@@ -6,6 +6,7 @@ import type { CreateSubscriptionOrderResponse } from '../models/CreateSubscripti
 import type { CurrentSubscriptionResponse } from '../models/CurrentSubscriptionResponse';
 import type { ListSubscriptionInvoicesResponse } from '../models/ListSubscriptionInvoicesResponse';
 import type { ListSubscriptionPlansResponse } from '../models/ListSubscriptionPlansResponse';
+import type { ReactivateSubscriptionResponse } from '../models/ReactivateSubscriptionResponse';
 import type { SuccessResponse } from '../models/SuccessResponse';
 import type { VerifySubscriptionPaymentRequest } from '../models/VerifySubscriptionPaymentRequest';
 
@@ -160,6 +161,33 @@ export class SubscriptionAPI {
     return this.httpRequest.request({
       method: 'GET',
       url: '/subscription/invoices',
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Reactivate expired subscription
+   * Reactivate a subscription for a user who has already used the free trial. No free trial is given, and the subscription starts immediately.
+   * @returns ReactivateSubscriptionResponse
+   * @throws ApiError
+   */
+  public reactivateSubscription({
+    planId,
+  }: {
+    /**
+     * ID of the subscription plan
+     */
+    planId: string,
+  }): CancelablePromise<ReactivateSubscriptionResponse> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/subscription/reactivate/{planId}',
+      path: {
+        'planId': planId,
+      },
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,

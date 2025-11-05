@@ -5,16 +5,36 @@
 
 export type User = {
   /**
+   * ID of the user
+   */
+  id: string;
+  /**
    * First name of the user
    */
-  firstName?: string;
+  firstName: string;
   /**
    * Last name of the user
    */
-  lastName?: string;
+  lastName: string;
+  /**
+   * Email of the user
+   */
+  email: string;
   /**
    * Title of the user
    */
-  title?: string;
+  title: string;
+  /**
+   * Designation of the user
+   */
+  designation: string;
+  /**
+   * URL of the user avatar
+   */
+  imageURL: string;
+  /**
+   * Permissions this member has
+   */
+  permissions: Array<string>;
 };
 

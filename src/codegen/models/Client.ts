@@ -28,6 +28,22 @@ export type Client = {
    */
   address: string;
   /**
+   * City of the client
+   */
+  city?: string;
+  /**
+   * State of the client
+   */
+  state?: string;
+  /**
+   * Country of the client
+   */
+  country?: string;
+  /**
+   * Currency the client deals in
+   */
+  currencyId?: number;
+  /**
    * Client contact information (array of phone numbers and email addresses)
    */
   contactInfo: Array<ContactInfo>;

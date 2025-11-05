@@ -40,6 +40,22 @@ export type CreateTimesheetPayLoad = {
    * Array of tag IDs to associate with this timesheet
    */
   tagIds?: Array<string>;
+  /**
+   * ID of the owner of this timesheet
+   */
+  ownerId?: string;
+  /**
+   * ID of the parent task if this is a subtask
+   */
+  parentTaskId?: string;
+  /**
+   * Whether this task is billable
+   */
+  isBillable?: boolean;
+  /**
+   * ID of the custom status for this task
+   */
+  statusId: string;
 };
 
 export namespace CreateTimesheetPayLoad {
@@ -48,6 +64,7 @@ export namespace CreateTimesheetPayLoad {
    * Status of the task being created
    */
   export enum status {
+    COMPLETE = 'complete',
     BACKLOG = 'backlog',
     TODO = 'todo',
     IN_PROGRESS = 'in_progress',

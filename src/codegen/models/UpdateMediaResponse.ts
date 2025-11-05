@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Media } from './Media';
+import type { MediaResponseDto } from './MediaResponseDto';
 
 export type UpdateMediaResponse = {
   /**
@@ -13,6 +13,6 @@ export type UpdateMediaResponse = {
   /**
    * Updated media details
    */
-  data: Media;
+  data: MediaResponseDto;
 };
 

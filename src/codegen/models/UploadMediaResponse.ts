@@ -3,6 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { MediaResponseDto } from './MediaResponseDto';
+
 export type UploadMediaResponse = {
   /**
    * Success status
@@ -11,6 +13,6 @@ export type UploadMediaResponse = {
   /**
    * Uploaded media files
    */
-  data: Array<Record<string, any>>;
+  data: Array<MediaResponseDto>;
 };
 

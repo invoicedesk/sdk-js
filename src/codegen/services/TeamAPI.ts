@@ -3,14 +3,13 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { APIResponse } from '../models/APIResponse';
-import type { CompleteInviteFlowBody } from '../models/CompleteInviteFlowBody';
-import type { CompleteInviteFlowResponse } from '../models/CompleteInviteFlowResponse';
 import type { DeleteTeamMemberResponse } from '../models/DeleteTeamMemberResponse';
-import type { ExchangeTokenForDetailsResponse } from '../models/ExchangeTokenForDetailsResponse';
 import type { InviteTeamMemberRequestBody } from '../models/InviteTeamMemberRequestBody';
 import type { ListTeamMembersResponse } from '../models/ListTeamMembersResponse';
 import type { ResendInviteRequestBody } from '../models/ResendInviteRequestBody';
+import type { SuccessResponse } from '../models/SuccessResponse';
 import type { TeamInviteResponse } from '../models/TeamInviteResponse';
+import type { TeamMemberAccessResponse } from '../models/TeamMemberAccessResponse';
 import type { UpdateTeamMemberRequestBody } from '../models/UpdateTeamMemberRequestBody';
 import type { UpdateTeamMemberResponse } from '../models/UpdateTeamMemberResponse';
 
@@ -109,6 +108,33 @@ export class TeamAPI {
   }
 
   /**
+   * Get Team Member Access Details
+   * Get detailed access information for a team member who has accepted their invitation
+   * @returns TeamMemberAccessResponse
+   * @throws ApiError
+   */
+  public getTeamMemberAccess({
+    userId,
+  }: {
+    /**
+     * User ID of the team member
+     */
+    userId: string,
+  }): CancelablePromise<TeamMemberAccessResponse> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/team/{userId}/access',
+      path: {
+        'userId': userId,
+      },
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
    * Invite Team Member
    * Invite a person to join your team. This operation sends an invite via email to the person.
    * @returns TeamInviteResponse
@@ -132,73 +158,6 @@ export class TeamAPI {
   }
 
   /**
-   * @returns any
-   * @throws ApiError
-   */
-  public teamInvitesControllerAccept({
-    token,
-  }: {
-    token: string,
-  }): CancelablePromise<any> {
-    return this.httpRequest.request({
-      method: 'GET',
-      url: '/team-invites/accept-invite',
-      query: {
-        'token': token,
-      },
-    });
-  }
-
-  /**
-   * Exchange token for email
-   * Exchange token for email
-   * @returns ExchangeTokenForDetailsResponse
-   * @throws ApiError
-   */
-  public exchangeTokenForEmail({
-    token,
-  }: {
-    /**
-     * Team invite token
-     */
-    token: string,
-  }): CancelablePromise<ExchangeTokenForDetailsResponse> {
-    return this.httpRequest.request({
-      method: 'GET',
-      url: '/team-invites/exchange',
-      query: {
-        'token': token,
-      },
-      errors: {
-        403: `Unauthorized`,
-        404: `Resource not found`,
-      },
-    });
-  }
-
-  /**
-   * Complete Invite Flow
-   * Completes the invitation flow by validating the auth provider user ID, invite token and cementing the users's membership in the team
-   * @returns CompleteInviteFlowResponse
-   * @throws ApiError
-   */
-  public completeInviteFlow({
-    requestBody,
-  }: {
-    requestBody: CompleteInviteFlowBody,
-  }): CancelablePromise<CompleteInviteFlowResponse> {
-    return this.httpRequest.request({
-      method: 'POST',
-      url: '/team-invites/complete',
-      body: requestBody,
-      mediaType: 'application/json',
-      errors: {
-        404: `Resource not found`,
-      },
-    });
-  }
-
-  /**
    * Resend Invite
    * Resend an invite to the person you wish to have on your team
    * @returns APIResponse
@@ -215,6 +174,33 @@ export class TeamAPI {
       body: requestBody,
       mediaType: 'application/json',
       errors: {
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Accept or reject invitation
+   * Accept or reject a team invitation
+   * @returns SuccessResponse
+   * @throws ApiError
+   */
+  public respondToInvitation({
+    token,
+    action,
+  }: {
+    token: string,
+    action: string,
+  }): CancelablePromise<SuccessResponse> {
+    return this.httpRequest.request({
+      method: 'PATCH',
+      url: '/team-invites/invitations/{token}/{action}',
+      path: {
+        'token': token,
+        'action': action,
+      },
+      errors: {
+        403: `Unauthorized`,
         404: `Resource not found`,
       },
     });

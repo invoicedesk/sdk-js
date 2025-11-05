@@ -73,5 +73,6 @@ export type Company = {
    * Invoice settings for the company
    */
   invoiceSettings: InvoiceSettings;
+  account: Record<string, any>;
 };
 

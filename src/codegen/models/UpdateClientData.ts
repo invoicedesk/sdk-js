@@ -44,5 +44,9 @@ export type UpdateClientData = {
    * Tax registration number of the client
    */
   taxRegistrationNumber?: string;
+  /**
+   * Currency the client deals in
+   */
+  currencyId?: Record<string, any>;
 };
 

@@ -47,6 +47,10 @@ export type CreateInvoicePayload = {
    * Options to send the invoice to the customer
    */
   deliveryOptions: DeliveryOptions;
+  /**
+   * Include link to make payment?
+   */
+  includePaymentLink?: boolean;
 };
 
 export namespace CreateInvoicePayload {

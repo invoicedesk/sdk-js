@@ -31,6 +31,10 @@ export class InvoiceAPI {
     limit = 20,
     prefixes,
     include,
+    status,
+    paymentStatus,
+    sortBy,
+    sortDirection,
   }: {
     /**
      * Company ID for which to list invoices
@@ -52,6 +56,22 @@ export class InvoiceAPI {
      * Comma separated list of related data to include in the response
      */
     include?: 'items' | 'client' | 'company',
+    /**
+     * Filter invoices by database status
+     */
+    status?: 'draft' | 'sent' | 'paid',
+    /**
+     * Filter invoices by computed payment status
+     */
+    paymentStatus?: 'paid' | 'partially_paid' | 'overdue' | 'outstanding',
+    /**
+     * Field to sort by
+     */
+    sortBy?: 'date' | 'invoiceNumber' | 'amount',
+    /**
+     * Sort direction
+     */
+    sortDirection?: 'asc' | 'desc',
   }): CancelablePromise<ListInvoiceResponse> {
     return this.httpRequest.request({
       method: 'GET',
@@ -64,6 +84,10 @@ export class InvoiceAPI {
         'limit': limit,
         'prefixes': prefixes,
         'include': include,
+        'status': status,
+        'paymentStatus': paymentStatus,
+        'sortBy': sortBy,
+        'sortDirection': sortDirection,
       },
       errors: {
         403: `Unauthorized`,

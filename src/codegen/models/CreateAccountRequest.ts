@@ -3,16 +3,18 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { User } from './User';
-
 export type CreateAccountRequest = {
   /**
-   * Name of the account
+   * Name of the account (team/agency name)
    */
   name: string;
   /**
-   * User details
+   * Primary use cases for the account
    */
-  user: User;
+  useCases?: Array<string>;
+  /**
+   * Email addresses to invite as teammates
+   */
+  inviteEmails?: Array<string>;
 };
 

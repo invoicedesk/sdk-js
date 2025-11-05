@@ -32,6 +32,22 @@ export type UpdateProjectPayload = {
    * Hourly rate for the project
    */
   rate?: number;
+  /**
+   * Advance payment for the project
+   */
+  advancePayment?: number;
+  /**
+   * Array of media IDs for scope documents
+   */
+  scopeDocuments?: Array<string>;
+  /**
+   * Array of tag IDs to associate with the project
+   */
+  tagIds?: Array<string>;
+  /**
+   * Engagement type for the project
+   */
+  engagementType?: Record<string, any>;
 };
 
 export namespace UpdateProjectPayload {

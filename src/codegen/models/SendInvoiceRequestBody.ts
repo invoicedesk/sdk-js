@@ -10,5 +10,9 @@ export type SendInvoiceRequestBody = {
    * Delivery options
    */
   deliveryOptions: DeliveryOptions;
+  /**
+   * Include link to make payment?
+   */
+  includePaymentLink?: boolean;
 };
 

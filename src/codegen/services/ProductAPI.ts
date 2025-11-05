@@ -93,6 +93,17 @@ export class ProductAPI {
   }
 
   /**
+   * @returns any
+   * @throws ApiError
+   */
+  public productsControllerShow(): CancelablePromise<any> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/companies/{companyId}/products/{productId}',
+    });
+  }
+
+  /**
    * Update a product
    * Update an existing product for a company
    * @returns UpdateProductResponse

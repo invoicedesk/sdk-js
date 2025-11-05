@@ -4,6 +4,8 @@
 /* eslint-disable */
 
 import type { Project } from './Project';
+import type { ProjectTaskStatus } from './ProjectTaskStatus';
+import type { Tag } from './Tag';
 import type { User } from './User';
 
 export type TimeSheet = {
@@ -40,6 +42,10 @@ export type TimeSheet = {
    */
   status: string;
   /**
+   * Custom status details for this task
+   */
+  customStatus: ProjectTaskStatus;
+  /**
    * Details of the project associated with this timesheet entry
    */
   project: Project;
@@ -48,5 +54,60 @@ export type TimeSheet = {
    */
   assignee: User;
   invoice: Record<string, any>;
+  /**
+   * Tags associated with this timesheet entry
+   */
+  tags: Array<Tag>;
+  /**
+   * Priority of this task
+   */
+  priority: TimeSheet.priority;
+  /**
+   * ID of the owner of this task
+   */
+  ownerId: string;
+  /**
+   * Owner of this task
+   */
+  owner: User;
+  /**
+   * Name of the task
+   */
+  name: string;
+  /**
+   * ID of the parent task if this is a subtask
+   */
+  parentTaskId: string;
+  /**
+   * Subtasks of this task
+   */
+  subtasks: Array<TimeSheet>;
+  /**
+   * Indicates if this task is billable
+   */
+  isBillable: boolean;
+  /**
+   * LexoRank value for ordering tasks within a status column
+   */
+  rank?: string;
+  /**
+   * Number of comments associated with this timesheet entry
+   */
+  commentCount: number;
 };
+
+export namespace TimeSheet {
+
+  /**
+   * Priority of this task
+   */
+  export enum priority {
+    LOW = 'low',
+    MEDIUM = 'medium',
+    HIGH = 'high',
+    URGENT = 'urgent',
+  }
+
+
+}
 

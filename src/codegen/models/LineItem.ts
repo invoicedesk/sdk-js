@@ -5,13 +5,17 @@
 
 export type LineItem = {
   /**
-   * ID of the invoiceable item
+   * Internal ID of the line item
    */
-  id: string;
+  id?: string;
+  /**
+   * ID of the invoiceable item. Example: A product or timesheet ID
+   */
+  invoiceableId: string;
   /**
    * The type of entity being invoiced
    */
-  type: LineItem.type;
+  invoiceableType: LineItem.invoiceableType;
   /**
    * Description of the invoiceable item
    */
@@ -43,7 +47,7 @@ export namespace LineItem {
   /**
    * The type of entity being invoiced
    */
-  export enum type {
+  export enum invoiceableType {
     GOODS = 'GOODS',
     SERVICES = 'SERVICES',
     TIMESHEET = 'TIMESHEET',

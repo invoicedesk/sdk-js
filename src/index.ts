@@ -1,4 +1,4 @@
-import { InvoiceDeskClient, OpenAPI } from "./codegen";
+import { NeedfullAPI as APIClient, OpenAPI } from "./codegen";
 import { HttpClient } from "./http-client";
 
 export type Config = {
@@ -23,14 +23,14 @@ export type Config = {
   apiKey: string;
 };
 
-export class InvoiceDesk {
-  private client: InvoiceDeskClient;
+export class NeedfullAPI {
+  private client: APIClient;
 
   constructor({
     host = 'https://api.invoicedesk.app',
     apiKey,
   }: Config) {
-    this.client = new InvoiceDeskClient({
+    this.client = new APIClient({
       BASE: `${host}`,
     }, HttpClient);
     OpenAPI.TOKEN = apiKey;

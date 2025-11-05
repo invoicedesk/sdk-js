@@ -15,7 +15,7 @@ export type TagResponse = {
   /**
    * Name of the tag
    */
-  tagName: string;
+  name: string;
   /**
    * Creation timestamp
    */

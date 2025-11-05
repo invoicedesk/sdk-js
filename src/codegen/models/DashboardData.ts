@@ -37,8 +37,8 @@ export type DashboardData = {
    */
   totalHours: number;
   /**
-   * Total hours that have not been billed yet
+   * Total number of invoices that have not been sent yet (draft status)
    */
-  unbilledHours: number;
+  unsentInvoices: number;
 };
 

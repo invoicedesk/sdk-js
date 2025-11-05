@@ -8,6 +8,7 @@ import type { GetCompanyPaymentsResponse } from '../models/GetCompanyPaymentsRes
 import type { GetCompanyQueryParams } from '../models/GetCompanyQueryParams';
 import type { GetCompanyResponse } from '../models/GetCompanyResponse';
 import type { ListCompaniesResponse } from '../models/ListCompaniesResponse';
+import type { OnboardingCompanyData } from '../models/OnboardingCompanyData';
 import type { SuccessResponse } from '../models/SuccessResponse';
 import type { UpdateCompanyData } from '../models/UpdateCompanyData';
 import type { UpdateCompanyResponse } from '../models/UpdateCompanyResponse';
@@ -52,6 +53,29 @@ export class CompanyAPI {
       url: '/companies',
       formData: formData,
       mediaType: 'multipart/form-data',
+      errors: {
+        403: `Unauthorized`,
+        404: `Resource not found`,
+      },
+    });
+  }
+
+  /**
+   * Set up workspace during onboarding
+   * Create a lightweight company setup during the onboarding flow
+   * @returns CreateCompanyResponse
+   * @throws ApiError
+   */
+  public setupOnboardingCompany({
+    requestBody,
+  }: {
+    requestBody: OnboardingCompanyData,
+  }): CancelablePromise<CreateCompanyResponse> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/companies/onboarding',
+      body: requestBody,
+      mediaType: 'application/json',
       errors: {
         403: `Unauthorized`,
         404: `Resource not found`,

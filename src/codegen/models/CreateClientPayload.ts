@@ -29,22 +29,26 @@ export type CreateClientPayload = {
   /**
    * City of the client
    */
-  city: string;
+  city?: string;
   /**
    * State of the client
    */
-  state: string;
+  state?: string;
   /**
    * Country of the client
    */
-  country: string;
+  country?: string;
   /**
    * ZIP/Postal code of the client
    */
-  zipCode: string;
+  zipCode?: string;
   /**
    * Tax registration number of the client
    */
   taxRegistrationNumber?: string;
+  /**
+   * Currency ID for the client (required)
+   */
+  currencyId?: number;
 };
 

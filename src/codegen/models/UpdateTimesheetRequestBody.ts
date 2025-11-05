@@ -24,5 +24,52 @@ export type UpdateTimesheetRequestBody = {
    * Date by which the task is due
    */
   dueDate?: string;
+  /**
+   * IDs of tags to associate with the timesheet
+   */
+  tagIds?: Array<string>;
+  /**
+   * Priority of the timesheet entry
+   */
+  priority?: UpdateTimesheetRequestBody.priority;
+  /**
+   * Status of the task
+   */
+  status?: string;
+  /**
+   * ID of the custom status for this task
+   */
+  statusId?: string;
+  /**
+   * ID of the owner of this timesheet
+   */
+  ownerId?: string;
+  /**
+   * Title of the task
+   */
+  taskName?: string;
+  /**
+   * ID of the parent task if this is a subtask
+   */
+  parentTaskId?: string;
+  /**
+   * Whether this task is billable
+   */
+  isBillable?: boolean;
 };
+
+export namespace UpdateTimesheetRequestBody {
+
+  /**
+   * Priority of the timesheet entry
+   */
+  export enum priority {
+    LOW = 'low',
+    MEDIUM = 'medium',
+    HIGH = 'high',
+    URGENT = 'urgent',
+  }
+
+
+}
 

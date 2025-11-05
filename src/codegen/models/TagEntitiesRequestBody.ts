@@ -26,6 +26,7 @@ export namespace TagEntitiesRequestBody {
   export enum taggableType {
     PROJECT = 'PROJECT',
     TIMESHEET = 'TIMESHEET',
+    TODO = 'TODO',
   }
 
 

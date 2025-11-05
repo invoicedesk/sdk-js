@@ -3,12 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { TeamMember } from './TeamMember';
-
 export type DeleteTeamMemberResponse = {
   /**
-   * Deleted team member details
+   * Whether the team member was removed
    */
-  data: TeamMember;
+  data: boolean;
 };
 
