@@ -217,6 +217,11 @@ export const sendRequest = async <T>(
 
   onCancel(() => source.cancel('The user aborted a request.'));
 
+  axiosClient.interceptors.request.use((axiosConfig) => {
+    axiosConfig.headers['Authorization'] = `Bearer ${config.TOKEN}`;
+    return axiosConfig;
+  });
+
   try {
     return await axiosClient.request(requestConfig);
   } catch (error) {
